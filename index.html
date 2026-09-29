@@ -1,234 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ASTU Muslim Students Jemea | Student Registration</title>
-  <meta
-    name="description"
-    content="ASTU Muslim Students Jemea new student registration."
-  />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ASTU Muslim Students Jemea | Registration</title>
+
+    <meta
+        name="description"
+        content="ASTU Muslim Students Jemea student registration form."
+    >
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <main class="page-shell">
-    <section class="registration-card">
 
-      <div class="top-decoration" aria-hidden="true">
-        <span>☾</span>
-        <div class="star-pattern">✦　✧　✦</div>
-      </div>
+    <div class="page-wrapper">
 
-      <header class="hero">
-        <div class="logo-wrap">
-          <img src="logo.png" alt="ASTU Muslim Students Jemea logo" />
-        </div>
+        <!-- Header -->
+        <header class="hero">
 
-        <p class="arabic">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
-
-        <h1>ASTU Muslim Students Jemea</h1>
-        <p class="subtitle">New Student Registration</p>
-
-        <p class="intro">
-          Welcome to ASTU Muslim Students Jemea. Please complete this short
-          registration form so we can stay connected and support you as part
-          of our student community.
-        </p>
-      </header>
-
-      <div class="divider">
-        <span>✦</span>
-      </div>
-
-      <form id="registrationForm" novalidate>
-
-        <div class="section-heading">
-          <span class="section-number">01</span>
-          <div>
-            <h2>Personal Information</h2>
-            <p>Tell us a little about yourself.</p>
-          </div>
-        </div>
-
-        <div class="form-grid">
-          <div class="field full">
-            <label for="fullName">Full Name <span>*</span></label>
-            <input
-              type="text"
-              id="fullName"
-              name="fullName"
-              placeholder="Enter your full name"
-              autocomplete="name"
-              required
-            />
-            <small class="error" id="fullNameError"></small>
-          </div>
-
-          <div class="field">
-            <label for="phone">Phone Number <span>*</span></label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              placeholder="09XXXXXXXX"
-              autocomplete="tel"
-              required
-            />
-            <small class="error" id="phoneError"></small>
-          </div>
-
-          <div class="field">
-            <label for="email">Email Address <span>*</span></label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="example@email.com"
-              autocomplete="email"
-              required
-            />
-            <small class="error" id="emailError"></small>
-          </div>
-
-          <div class="field">
-            <label for="telegram">Telegram Username</label>
-            <input
-              type="text"
-              id="telegram"
-              name="telegram"
-              placeholder="@username (optional)"
-            />
-          </div>
-
-          <div class="field">
-            <label for="studentId"> DORM Number</label>
-            <input
-              type="text"
-              id="studentId"
-              name="studentId"
-              placeholder="Optional"
-            />
-          </div>
-        </div>
-
-        <div class="section-heading second">
-          <span class="section-number">02</span>
-          <div>
-            <h2>University Information</h2>
-            <p>Help us understand your academic background.</p>
-          </div>
-        </div>
-
-        <div class="form-grid">
-          <div class="field">
-            <label for="department">Department / Program <span>*</span></label>
-            <input
-              type="text"
-              id="department"
-              name="department"
-              placeholder="e.g. Software Engineering"
-              required
-            />
-            <small class="error" id="departmentError"></small>
-          </div>
-
-          <div class="field">
-            <label for="year">Year of Study <span>*</span></label>
-            <select id="year" name="year" required>
-              <option value="">Select your year</option>
-              <option>1st Year</option>
-              <option>2nd Year</option>
-              <option>3rd Year</option>
-              <option>4th Year</option>
-              <option>5th Year</option>
-              <option>Other</option>
-            </select>
-            <small class="error" id="yearError"></small>
-          </div>
-
-          <div class="field full">
-            <label for="interests">What would you like to be involved in?</label>
-            <div class="checkbox-grid">
-              <label class="check">
-                <input type="checkbox" name="interests" value="Quran & Islamic learning" />
-                <span>Qur'an & Islamic Learning</span>
-              </label>
-              <label class="check">
-                <input type="checkbox" name="interests" value="Community activities" />
-                <span>Community Activities</span>
-              </label>
-              <label class="check">
-                <input type="checkbox" name="interests" value="Academic support" />
-                <span>Academic Support</span>
-              </label>
-              <label class="check">
-                <input type="checkbox" name="interests" value="Events & volunteering" />
-                <span>Events & Volunteering</span>
-              </label>
+            <div class="logo-container">
+                <img
+                    src="logo.png"
+                    alt="ASTU Muslim Students Jemea Logo"
+                    class="logo"
+                >
             </div>
-          </div>
 
-          <div class="field full">
-            <label for="note">Anything you'd like us to know?</label>
-            <textarea
-              id="note"
-              name="note"
-              rows="4"
-              maxlength="500"
-              placeholder="Optional message..."
-            ></textarea>
-          </div>
-        </div>
+            <p class="arabic">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
 
-        <!-- Honeypot field for simple bot protection. Keep hidden. -->
-        <div class="honeypot" aria-hidden="true">
-          <label for="website">Website</label>
-          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
-        </div>
+            <h1>ASTU Muslim Students Jemea</h1>
 
-        <div class="consent">
-          <input type="checkbox" id="consent" required />
-          <label for="consent">
-            I confirm that the information I provided is correct and I agree
-            to be contacted by ASTU Muslim Students Jemea regarding student
-            activities and registration.
-          </label>
-        </div>
+            <p class="subtitle">
+                Student Registration
+            </p>
 
-        <button type="submit" id="submitButton">
-          <span class="button-text">Complete Registration</span>
-          <span class="spinner" aria-hidden="true"></span>
-        </button>
+            <p class="intro">
+                Welcome! Please complete the registration form below to join
+                ASTU Muslim Students Jemea.
+            </p>
 
-        <p class="required-note"><span>*</span> Required fields</p>
-      </form>
+        </header>
 
-      <div class="success-message" id="successMessage" hidden>
-        <div class="success-icon">✓</div>
-        <h2>Registration Received!</h2>
-        <p>
-          JazakAllahu khayran for registering with ASTU Muslim Students Jemea.
-          We will keep your information and contact you regarding relevant
-          activities.
-        </p>
-        <button type="button" id="registerAnother">Register Another Student</button>
-      </div>
 
-      <footer>
-        <div class="footer-line"></div>
-        <p>ASTU Muslim Students Jemea</p>
-        <span>Unity • Knowledge • Faith</span>
-      </footer>
-    </section>
-  </main>
+        <!-- Registration Card -->
+        <main class="registration-card">
 
-  <script src="script.js"></script>
+            <div class="section-header">
+                <h2>Student Registration</h2>
+                <p>
+                    Please provide your information accurately.
+                </p>
+            </div>
+
+
+            <form id="registrationForm">
+
+                <!-- Honeypot - hidden from normal users -->
+                <div class="honeypot" aria-hidden="true">
+                    <label for="website">Website</label>
+                    <input
+                        type="text"
+                        id="website"
+                        name="website"
+                        tabindex="-1"
+                        autocomplete="off"
+                    >
+                </div>
+
+
+                <div class="form-grid">
+
+                    <!-- Full Name -->
+                    <div class="form-group">
+                        <label for="fullName">
+                            Full Name <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            placeholder="Enter your full name"
+                            required
+                        >
+                    </div>
+
+
+                    <!-- Phone -->
+                    <div class="form-group">
+                        <label for="phone">
+                            Phone Number <span>*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="09XXXXXXXX"
+                            required
+                        >
+                    </div>
+
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">
+                            Email <span>*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="example@email.com"
+                            required
+                        >
+                    </div>
+
+
+                    <!-- Telegram -->
+                    <div class="form-group">
+                        <label for="telegram">
+                            Telegram Username
+                        </label>
+
+                        <input
+                            type="text"
+                            id="telegram"
+                            name="telegram"
+                            placeholder="@username"
+                        >
+                    </div>
+
+
+                    <!-- Student ID -->
+                    <div class="form-group">
+                        <label for="studentId">
+                            UGR / Student ID
+                        </label>
+
+                        <input
+                            type="text"
+                            id="studentId"
+                            name="studentId"
+                            placeholder="Enter your student ID"
+                        >
+                    </div>
+
+
+                    <!-- Department -->
+                    <div class="form-group">
+                        <label for="department">
+                            Department <span>*</span>
+                        </label>
+
+                        <select
+                            id="department"
+                            name="department"
+                            required
+                        >
+                            <option value="" disabled selected>
+                                Select Department
+                            </option>
+
+                            <option value="Engineering">
+                                Engineering
+                            </option>
+
+                            <option value="Applied">
+                                Applied
+                            </option>
+                        </select>
+                    </div>
+
+                </div>
+
+
+                <!-- Submit -->
+                <button
+                    type="submit"
+                    id="submitBtn"
+                    class="submit-btn"
+                >
+                    Register
+                </button>
+
+                <p class="form-note">
+                    Fields marked with <strong>*</strong> are required.
+                </p>
+
+            </form>
+
+
+            <!-- Success Message -->
+            <div
+                id="successMessage"
+                class="success-message"
+                style="display: none;"
+            >
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <h2>Registration Successful!</h2>
+
+                <p>
+                    Thank you for registering with ASTU Muslim Students Jemea.
+                </p>
+
+                <p id="registrationId"></p>
+
+            </div>
+
+        </main>
+
+
+        <!-- Footer -->
+        <footer>
+            <p>
+                © ASTU Muslim Students Jemea
+            </p>
+        </footer>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
 </body>
 </html>

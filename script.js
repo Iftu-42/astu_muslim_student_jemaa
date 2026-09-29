@@ -1,169 +1,100 @@
-/*
-  Paste your deployed Google Apps Script Web App URL below.
-  Example:
-  const SCRIPT_URL = "https://script.google.com/macros/s/XXXXXXXX/exec";
-*/
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbylqeuRa1KsWMUM0pk_zx6alPfQWHC802s2ad-YLCwsk0DcaoKvS525WLeDZGazzJXG/exec";
 
 const form = document.getElementById("registrationForm");
+const submitBtn = document.getElementById("submitBtn");
+
 const successMessage = document.getElementById("successMessage");
-const submitButton = document.getElementById("submitButton");
-const registerAnother = document.getElementById("registerAnother");
+const registrationId = document.getElementById("registrationId");
 
-const requiredFields = [
-  {
-    id: "fullName",
-    message: "Please enter your full name."
-  },
-  {
-    id: "phone",
-    message: "Please enter your phone number."
-  },
-  {
-    id: "email",
-    message: "Please enter a valid email address.",
-    type: "email"
-  },
-  {
-    id: "department",
-    message: "Please enter your department or program."
-  },
-  {
-    id: "year",
-    message: "Please select your year of study."
-  }
-];
 
-function showError(fieldId, message) {
-  const field = document.getElementById(fieldId);
-  const error = document.getElementById(`${fieldId}Error`);
+form.addEventListener("submit", async function (event) {
 
-  field.classList.add("invalid");
-  if (error) error.textContent = message;
-}
+    event.preventDefault();
 
-function clearError(fieldId) {
-  const field = document.getElementById(fieldId);
-  const error = document.getElementById(`${fieldId}Error`);
 
-  field.classList.remove("invalid");
-  if (error) error.textContent = "";
-}
-
-function validateForm() {
-  let valid = true;
-
-  requiredFields.forEach(({ id, message, type }) => {
-    const field = document.getElementById(id);
-    const value = field.value.trim();
-
-    clearError(id);
-
-    if (!value) {
-      showError(id, message);
-      valid = false;
-      return;
+    // Basic validation
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
     }
 
-    if (type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-      showError(id, message);
-      valid = false;
+
+    // Honeypot protection
+    const honeypot = document.getElementById("website");
+
+    if (honeypot && honeypot.value.trim() !== "") {
+        return;
     }
-  });
 
-  const consent = document.getElementById("consent");
-  if (!consent.checked) {
-    alert("Please confirm the registration information before submitting.");
-    valid = false;
-  }
 
-  return valid;
-}
+    // Prevent multiple submissions
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting...";
 
-function collectFormData() {
-  const interests = [...document.querySelectorAll('input[name="interests"]:checked')]
-    .map((checkbox) => checkbox.value)
-    .join(", ");
 
-  return {
-    fullName: document.getElementById("fullName").value.trim(),
-    phone: document.getElementById("phone").value.trim(),
-    email: document.getElementById("email").value.trim(),
-    telegram: document.getElementById("telegram").value.trim(),
-    studentId: document.getElementById("studentId").value.trim(),
-    department: document.getElementById("department").value.trim(),
-    year: document.getElementById("year").value,
-    interests,
-    note: document.getElementById("note").value.trim(),
-    website: document.getElementById("website").value.trim()
-  };
-}
+    const formData = new URLSearchParams();
 
-function setLoading(isLoading) {
-  submitButton.disabled = isLoading;
-  submitButton.classList.toggle("loading", isLoading);
-  submitButton.querySelector(".button-text").textContent =
-    isLoading ? "Submitting..." : "Complete Registration";
-}
-
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
-
-  if (!validateForm()) return;
-
-  if (SCRIPT_URL === "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE") {
-    alert(
-      "The registration form is ready, but the Google Apps Script URL has not been added yet."
+    formData.append(
+        "fullName",
+        document.getElementById("fullName").value.trim()
     );
-    return;
-  }
 
-  const data = collectFormData();
-
-  // Honeypot: silently stop obvious bot submissions.
-  if (data.website) return;
-
-  setLoading(true);
-
-  try {
-    // URLSearchParams keeps the request simple and avoids a JSON preflight.
-    const body = new URLSearchParams();
-
-    Object.entries(data).forEach(([key, value]) => {
-      body.append(key, value);
-    });
-
-    await fetch(SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors",
-      body
-    });
-
-    // With no-cors the response is intentionally opaque, so we show
-    // confirmation after the request is sent.
-    form.hidden = true;
-    successMessage.hidden = false;
-    window.scrollTo({ top: 0, behavior: "smooth" });
-
-  } catch (error) {
-    console.error(error);
-    alert(
-      "We could not submit the registration right now. Please check your internet connection and try again."
+    formData.append(
+        "phone",
+        document.getElementById("phone").value.trim()
     );
-  } finally {
-    setLoading(false);
-  }
-});
 
-registerAnother.addEventListener("click", () => {
-  form.reset();
-  form.hidden = false;
-  successMessage.hidden = true;
+    formData.append(
+        "email",
+        document.getElementById("email").value.trim()
+    );
 
-  requiredFields.forEach(({ id }) => clearError(id));
+    formData.append(
+        "telegram",
+        document.getElementById("telegram").value.trim()
+    );
 
-  window.scrollTo({
-    top: form.offsetTop - 20,
-    behavior: "smooth"
-  });
+    formData.append(
+        "studentId",
+        document.getElementById("studentId").value.trim()
+    );
+
+    formData.append(
+        "department",
+        document.getElementById("department").value
+    );
+
+
+    try {
+
+        await fetch(SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            body: formData
+        });
+
+
+        // Show success
+        form.style.display = "none";
+        successMessage.style.display = "block";
+
+
+        // Since no-cors doesn't expose the Apps Script response,
+        // show a general confirmation.
+        registrationId.textContent =
+            "Your registration has been received successfully.";
+
+
+    } catch (error) {
+
+        console.error("Registration error:", error);
+
+        alert(
+            "Something went wrong while submitting your registration. Please try again."
+        );
+
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Register";
+    }
+
 });
